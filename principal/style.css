@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Belanosima&family=Poppins:wght@300&display=swap");
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #ffc3a1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#form {
+  /* margin: 40px auto 10px; */
+  width: 700px;
+  /* height: 430px;
+  border: #d3756b solid 5px; */
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 15px;
+  line-height: 20px;
+  /* padding: 20px; */
+  gap: 33px;
+}
+#padre {
+  margin: 40px auto 10px;
+  width: 700px;
+  height: 430px;
+  border: #d3756b solid 5px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 15px;
+  line-height: 20px;
+  /* padding: 20px; */
+  gap: 33px;
+}
+#padre input {
+  margin: 0px;
+  width: 175px;
+  height: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+input {
+  display: none;
+}
+/* Sirve para que aparezca lo que se elige mas claro */
+input:checked + label {
+  background-color: var(--main-color-3);
+  color: var(--main-color-2);
+  box-shadow: 1px1px10px var(--main-color-1);
+}
+
+/* #hijo {
+font-size: 25px;
+} */
+
+#boton {
+  width: 93px;
+  height: 33px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background: transparent;
+
+  border: 2px solid black;
+  font-family: "Poppins", sans-serif;
+
+  font-weight: 500;
+  margin-right: 25px;
+}
+#boton:hover {
+  background-color: #ec8f84;
+}

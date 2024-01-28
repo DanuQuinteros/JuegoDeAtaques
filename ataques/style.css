@@ -1,0 +1,92 @@
+@import url("https://fonts.googleapis.com/css2?family=Belanosima&family=Poppins:wght@300&display=swap");
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #ffc3a1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.titulo {
+  color: black;
+  /* background-color: #a75d5d; */
+  font-size: 32px;
+  font-family: "Belanosima", sans-serif;
+  text-align: center;
+  border-bottom: #a75d5d 2px solid;
+}
+.subtitulo {
+  color: black;
+  font-size: 20px;
+}
+input {
+  display: none;
+}
+/* Sirve para que aparezca lo que se elige mas claro */
+input:checked + label {
+  background-color: var(--main-color-3);
+  color: var(--main-color-2);
+  box-shadow: 1px1px10px var(--main-color-1);
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+    align-items: center;
+}
+
+.boton-ataque {
+  width: 150px;
+  height: 40px;
+  background-color: #d3756b;
+  padding: 8px;
+  box-sizing: border-box;
+  margin: 2px;
+  border: 2px solid #d3756b;
+  border-radius: 20px;
+  flex-direction: column-reverse;
+  align-items: center;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  margin-top: 10px;
+}
+
+.boton-ataque:hover {
+  background-color: #ffc3a1;
+  color: black;
+}
+
+#mensajes {
+  height: 20px;
+  background-color: #ffc3a1;
+  padding: 10px;
+  text-align: center;
+}
+
+.bordes {
+  border: 2px solid;
+  text-align: center;
+  padding: 10px;
+  font-size: large;
+  font-weight: 500;
+}
+#boton-reiniciar {
+  width: 93px;
+  height: 33px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background: transparent;
+
+  border: 2px solid black;
+  font-family: "Poppins", sans-serif;
+
+  font-weight: 500;
+  margin-right: 25px;
+}
+#boton-reiniciar:hover {
+  background-color: #ec8f84;
+}
