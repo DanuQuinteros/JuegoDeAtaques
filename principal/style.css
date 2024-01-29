@@ -9,10 +9,7 @@ body {
   align-items: center;
 }
 #form {
-  /* margin: 40px auto 10px; */
   width: 700px;
-  /* height: 430px;
-  border: #d3756b solid 5px; */
   border-radius: 5px;
   display: flex;
   justify-content: center;
@@ -20,7 +17,7 @@ body {
   flex-direction: column;
   font-size: 15px;
   line-height: 20px;
-  /* padding: 20px; */
+
   gap: 33px;
 }
 #padre {
@@ -35,7 +32,6 @@ body {
   flex-direction: column;
   font-size: 15px;
   line-height: 20px;
-  /* padding: 20px; */
   gap: 33px;
 }
 #padre input {
@@ -50,16 +46,12 @@ body {
 input {
   display: none;
 }
-/* Sirve para que aparezca lo que se elige mas claro */
+
 input:checked + label {
   background-color: var(--main-color-3);
   color: var(--main-color-2);
   box-shadow: 1px1px10px var(--main-color-1);
 }
-
-/* #hijo {
-font-size: 25px;
-} */
 
 #boton {
   width: 93px;

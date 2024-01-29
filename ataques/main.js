@@ -1,5 +1,3 @@
-console.log('hoaa');
-
 let ataqueJugador;
 let ataqueEnemigo;
 let vidasJugador = 3;
@@ -7,45 +5,98 @@ let vidasEnemigo = 3;
 let botones = ["boton-fuego", "boton-agua", "boton-tierra"].map((id) =>
   document.getElementById(id)
 );
-let sectionSeleccionarAtaque = document.getElementById("seleccionar-ataque");
-let sectionReiniciar = document.getElementById("reiniciar");
 let spanMascotaJugador = document.getElementById("mascota-jugador");
 
-function iniciarJuego() {
+document.getElementById("boton-reiniciar-partida").addEventListener("click", reiniciarPartida);
+document.getElementById("boton-reiniciar-juego").addEventListener("click", reiniciarJuegoCompleto);
 
+function iniciarJuego() {
+  const nombreJugador = localStorage.getItem("nombre");
+
+  document.querySelector(".subtitulo").innerHTML = nombreJugador
+    ? `${nombreJugador}, elegí tu mascota de ataque:`
+    : `Elegí tu mascota de ataque:`;
 
   const nombreMascota = localStorage.getItem("nombreMascota");
   spanMascotaJugador.innerHTML = nombreMascota ? `${nombreMascota} ` : "";
 
+  mascotaRival();
+
   let partidasJugadas = localStorage.getItem("partidasJugadas") || 0;
   localStorage.setItem("partidasJugadas", ++partidasJugadas);
-
 
   botones.forEach((boton) =>
     boton.addEventListener("click", () => atacar(boton.id))
   );
 
-  let botonReiniciar = document.getElementById("boton-reiniciar");
+  let botonReiniciar = document.getElementById("boton-reiniciar-partida");
   botonReiniciar.addEventListener("click", reiniciarJuego);
 }
 
 function reiniciarJuego() {
   Swal.fire({
-    title: '¿Estás seguro de reiniciar el juego?',
+    title: 'Antes de reiniciar la partida desde cero, ¿deseas ver los resultados guardados?',
     icon: 'question',
     showCancelButton: true,
-    confirmButtonText: 'Sí, reiniciar',
-    cancelButtonText: 'Cancelar',
+    confirmButtonText: 'Sí',
+    cancelButtonText: 'No',
   }).then((result) => {
     if (result.isConfirmed) {
-      // Si el usuario confirma, eliminar datos del localStorage y redirigir a ../principal/index.html
-      localStorage.removeItem("nombreMascota");
-      // spanMascotaJugador.innerHTML = "";
-      localStorage.removeItem("nombre");
-      document.querySelector(".subtitulo").innerHTML = "Elije tu mascota de ataque:";
-      window.location.href = "../principal/index.html";
+      resultadosGuardados();
+    } else {
+      reiniciarPartidaSinMostrarResultados();
     }
   });
+}
+
+function resultadosGuardados() {
+  const nombre = localStorage.getItem("nombre") || "";
+  const nombreMascota = localStorage.getItem("nombreMascota") || "";
+  const partidasJugadas = localStorage.getItem("partidasJugadas") || 0;
+  const partidasGanadas = localStorage.getItem("partidasGanadas") || 0;
+  const partidasPerdidas = localStorage.getItem("partidasPerdidas") || 0;
+
+  Swal.fire({
+    title: 'Resultados guardados:',
+    html: `Nombre: ${nombre}<br>
+      Nombre mascota: ${nombreMascota}<br>
+      Partidas jugadas: ${partidasJugadas}<br>
+      Partidas ganadas: ${partidasGanadas}<br>
+      Partidas perdidas: ${partidasPerdidas}`,
+    confirmButtonText: 'OK',
+    
+  }).then(() => {
+    reiniciarPartida();
+    setTimeout(() => {
+      location.reload();
+    }, 0); //utilicé esta función porque cuando aprieto el boton "ok" Me aparece de nuevo el cartel de SweetAlert y a los segundos me recarga la página..
+  });
+}
+
+function reiniciarPartida() {
+  Swal.fire({
+    title: 'Antes de reiniciar la partida desde cero, ¿deseas ver los resultados guardados?',
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonText: 'Sí',
+    cancelButtonText: 'No',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      resultadosGuardados();
+    } else {
+      reiniciarPartidaSinMostrarResultados();
+    }
+  });
+}
+
+function reiniciarPartidaSinMostrarResultados() {
+  location.reload();
+}
+
+function reiniciarJuegoCompleto() {
+  localStorage.clear();
+
+  window.location.href = "../principal/index.html";
 }
 
 function mascotaRival() {
@@ -73,6 +124,8 @@ function ataqueAleatorioRival() {
   combate();
 }
 
+
+
 function combate() {
   let spanVidasJugador = document.getElementById("vidas-mascota-jugador");
   let spanVidasEnemigo = document.getElementById("vidas-mascota-rival");
@@ -92,18 +145,25 @@ function combate() {
     vidasJugador--;
     spanVidasJugador.innerHTML = vidasJugador;
   }
-  localStorage.setItem("vidasJugador", vidasJugador);
-  localStorage.setItem("vidasEnemigo", vidasEnemigo);
+
   revisarVidas();
 }
 
 function revisarVidas() {
   if (vidasEnemigo === 0) {
     crearMensajeFinal("La mascota del enemigo se quedó sin vidas! Ganaste!");
+    incrementarPartida("partidasGanadas");
   } else if (vidasJugador === 0) {
     crearMensajeFinal("Tu mascota ya no tiene vidas! Perdiste");
+    incrementarPartida("partidasPerdidas");
   }
 }
+
+function incrementarPartida(tipo) {
+  let partidas = localStorage.getItem(tipo) || 0;
+  localStorage.setItem(tipo, ++partidas);
+}
+
 
 function deshabilitarBotones() {
   botones.forEach((boton) => {
@@ -142,14 +202,6 @@ function crearMensajeFinal(resultadoFinal) {
 
   sectionMensajes.appendChild(parrafo);
   deshabilitarBotones();
-  sectionReiniciar.style.display = "block";
-}
-
-function reiniciarJuego() {
-  localStorage.removeItem("mascotaSeleccionada");
-  localStorage.removeItem("vidasJugador");
-  localStorage.removeItem("vidasEnemigo");
-  location.reload();
 }
 
 function aleatorio(min, max) {

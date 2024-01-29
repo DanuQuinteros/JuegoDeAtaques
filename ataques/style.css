@@ -10,7 +10,6 @@ body {
 }
 .titulo {
   color: black;
-  /* background-color: #a75d5d; */
   font-size: 32px;
   font-family: "Belanosima", sans-serif;
   text-align: center;
@@ -23,7 +22,6 @@ body {
 input {
   display: none;
 }
-/* Sirve para que aparezca lo que se elige mas claro */
 input:checked + label {
   background-color: var(--main-color-3);
   color: var(--main-color-2);
@@ -34,6 +32,10 @@ section {
   display: flex;
   flex-direction: column;
     align-items: center;
+}
+#reiniciar {
+display: flex;
+flex-direction: row;
 }
 
 .boton-ataque {
@@ -71,9 +73,9 @@ section {
   font-size: large;
   font-weight: 500;
 }
-#boton-reiniciar {
+#boton-reiniciar-partida {
   width: 93px;
-  height: 33px;
+  height: 42px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -87,6 +89,26 @@ section {
   font-weight: 500;
   margin-right: 25px;
 }
-#boton-reiniciar:hover {
+#boton-reiniciar-partida:hover {
+  background-color: #ec8f84;
+}
+
+#boton-reiniciar-juego {
+  width: 93px;
+  height: 42px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background: transparent;
+
+  border: 2px solid black;
+  font-family: "Poppins", sans-serif;
+
+  font-weight: 500;
+  margin-right: 25px;
+}
+#boton-reiniciar-juetgo:hover {
   background-color: #ec8f84;
 }

@@ -70,7 +70,6 @@ body {
 input {
   display: none;
 }
-/* Sirve para que aparezca lo que se elige mas claro */
 input:checked + label {
   background-color: var(--main-color-3);
   color: var(--main-color-2);
