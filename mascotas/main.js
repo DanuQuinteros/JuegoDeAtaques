@@ -23,8 +23,7 @@ function seleccionarMascota() {
     )?.id || "";
 
   if (!nombreMascota) {
-    alert("Elige una mascota!");
-    reiniciarJuego();
+    alert("Elegí una mascota!");
     return;
   }
 

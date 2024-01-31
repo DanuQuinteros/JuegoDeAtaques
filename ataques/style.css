@@ -93,6 +93,26 @@ flex-direction: row;
   background-color: #ec8f84;
 }
 
+#boton-top-ganadores {
+  width: 93px;
+  height: 42px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background: transparent;
+
+  border: 2px solid black;
+  font-family: "Poppins", sans-serif;
+
+  font-weight: 500;
+  margin-right: 25px;
+}
+#boton-top-ganadores:hover {
+  background-color: #ec8f84;
+}
+
 #boton-reiniciar-juego {
   width: 93px;
   height: 42px;
@@ -109,6 +129,6 @@ flex-direction: row;
   font-weight: 500;
   margin-right: 25px;
 }
-#boton-reiniciar-juetgo:hover {
+#boton-reiniciar-juego:hover {
   background-color: #ec8f84;
 }
